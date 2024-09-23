@@ -1,0 +1,1247 @@
+{
+	"info": {
+		"_postman_id": "f13c94af-11ba-40a2-a05e-125621a72267",
+		"name": "Envista POC - Remote",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30523843",
+		"_collection_link": "https://envista-dev-team.postman.co/workspace/dea355ac-5f46-4bac-af7b-466d735940d6/collection/37328579-f13c94af-11ba-40a2-a05e-125621a72267?action=share&source=collection_link&creator=30523843"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Sign Up",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ronakk@zimetrics.com\",\r\n    \"password\": \"Peterparker@123\",\r\n    \"name\": \"Michael Scott\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/signup",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ronakk@zimetrics.com\",\r\n    \"password\": \"Peterparker@123\",\r\n    \"codeEmailVerify\": \"117889\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/verify",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sahils@zimetrics.com\",\r\n    \"password\": \"Peterparker@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/signin",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Get All Patients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/patient?limit=2&page=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"patient"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "john",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJraWQiOiJ5RXM3RDRnTXBKVzZGU2NleVRwV05KSllFNnVQclR5MEUyRDR3MXE4SENBPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJjNGU4NDRiOC0yMGYxLTcwZDgtNjNhMS0wNWFlZmY5MTkxOTEiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9MMnY3ejVEUFAiLCJjbGllbnRfaWQiOiI2bmdkZ2Y3am9tNm01M3I5OG81YmNndTg4bCIsIm9yaWdpbl9qdGkiOiJkZGFkNzQ1OC1hN2U4LTRjZDgtOTE1Yy1jODM2MjkwZjg0MGMiLCJldmVudF9pZCI6IjNhNmVkMWRmLWZmMGMtNDE4MS04ZjBmLWZjMDBjYTZiNWI5ZiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MjI1Nzg2NDYsImV4cCI6MTcyMjY2NTA0NiwiaWF0IjoxNzIyNTc4NjQ2LCJqdGkiOiJhYTBmNTBmNS0yNTc3LTQwZmMtOThiYS00ZDVjYmQ1OTYyYzYiLCJ1c2VybmFtZSI6ImM0ZTg0NGI4LTIwZjEtNzBkOC02M2ExLTA1YWVmZjkxOTE5MSJ9.M6XB2m2Fj_IrwHdVDuLu3x3X4k-f89G10nbtRrP2zExVYV5J-2pYdMa2l6u38q7_n-QBw_6JSaV2vXY2eqyJ24aq0eeno-ir285Iitg_bA7yW62PGvYpZIue8R4-MgMGr_gWpsqMGnDsudBE35Ss-HN7B5hLD-BzImEKGuTsvDph031LabHWZX4j2x0Ebj-diRzUKTYnmxbv4mSiDOHSHZ2iCG5p4oEbEbs91VjhQ2JTcw528zbQRScESpfN3w43dqj37E9RrONHGothAA1jkdfQyesW59VYX8ZgI3NHmI325zSjN--I-VqncfBE_EfmvGir2MAVJo_qeRkCLi3C8A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Jamie Hardol\",\r\n  \"email\": \"jamei.hardol@example.com\",\r\n  \"phone\": \"+123230940\",\r\n  \"gender\": \"Feale\",\r\n  \"address\": \"125 Brik Street, Santa Monica, CA, 93901\",\r\n  \"date_of_birth\": \"2000-03-19\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/patient/createPatient",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"patient",
+								"createPatient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Patient by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/patient/6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"patient",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Workflow",
+			"item": [
+				{
+					"name": "Get All workflows",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/workflows",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"workflows"
+							],
+							"query": [
+								{
+									"key": "conditionsTreated",
+									"value": "misaligned teeth",
+									"disabled": true
+								},
+								{
+									"key": "incorrectParameter",
+									"value": "wrong param",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Workflow by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/workflows/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"workflows",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TreatmentJourney",
+			"item": [
+				{
+					"name": "Get Treatment Journeys for Patient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/treatmentjourneys/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Patient Treatment Journey Plan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/treatmentjourneys/getpatientjourneyplan/1/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"getpatientjourneyplan",
+								"1",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Treatment Journey",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"journey5\",\r\n    \"priority\": \"High\",\r\n    \"start_date\": \"2024-07-29\",\r\n    \"end_date\": \"2024-07-31\",\r\n    \"clinical_notes\": \"Initial Assessment and treatment planning\",\r\n    \"workflow_id\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/treatmentjourneys/createTreatmentJourney/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"createTreatmentJourney",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create TreatmentJourney",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"journey5\",\r\n    \"priority\": \"High\",\r\n    \"start_date\": \"2024-07-29\",\r\n    \"end_date\": \"2024-07-31\",\r\n    \"clinical_notes\": \"Initial Assessment and treatment planning\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/treatmentjourneys/1/createTreatmentJourney",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"treatmentjourneys",
+										"1",
+										"createTreatmentJourney"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "98"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 31 Jul 2024 15:49:32 GMT"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1722441833"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "309"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"135-42QcjSLxOSl9b/ivbpxGSa4OeBk\""
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"treatment_journey_id\": 9,\n        \"tenant_id\": \"e49824e8-5081-70ee-1f8a-0448058d59ce\",\n        \"workflow_id\": null,\n        \"patient_id\": 1,\n        \"dental_practice_id\": 1,\n        \"status\": \"Done\",\n        \"start_date\": \"2024-07-28T18:30:00.000Z\",\n        \"end_date\": \"2024-07-30T18:30:00.000Z\",\n        \"priority\": \"High\",\n        \"clinical_notes\": \"Initial Assessment and treatment planning\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Update Workflow Id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"workflow_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/treatmentjourneys/updateWorkflowId/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"updateWorkflowId",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update TreatmentJourney",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"workflow_id\": \"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/treatmentjourneys/updateWorkflowId/9",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"treatmentjourneys",
+										"updateWorkflowId",
+										"9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 31 Jul 2024 15:49:48 GMT"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1722441833"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "306"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"132-CgT7/w6CyjhGsUHGYhLrrrNKQHs\""
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"treatment_journey_id\": 9,\n        \"tenant_id\": \"e49824e8-5081-70ee-1f8a-0448058d59ce\",\n        \"workflow_id\": 1,\n        \"patient_id\": 1,\n        \"dental_practice_id\": 1,\n        \"status\": \"Done\",\n        \"start_date\": \"2024-07-28T18:30:00.000Z\",\n        \"end_date\": \"2024-07-30T18:30:00.000Z\",\n        \"priority\": \"High\",\n        \"clinical_notes\": \"Initial Assessment and treatment planning\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Step Actions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/treatmentjourneys/step/1?step_id=1&journey_id=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"step",
+								"1"
+							],
+							"query": [
+								{
+									"key": "step_id",
+									"value": "1"
+								},
+								{
+									"key": "journey_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Skip stage",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/treatmentjourneys/skip-stage/1/1/1/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"skip-stage",
+								"1",
+								"1",
+								"1",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Status of Step and Stages",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/treatmentjourneys/step/complete/443",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"step",
+								"complete",
+								"443"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start Treatment Journey",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/treatmentjourneys/start-journey/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"start-journey",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update status of Actions [Approve/Review/E-Shop] Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/treatmentjourneys/step/action/complete/443",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"step",
+								"action",
+								"complete",
+								"443"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Complete Journey",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/treatmentjourneys/complete-journey/1/13",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"complete-journey",
+								"1",
+								"13"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "File Actions",
+			"item": [
+				{
+					"name": "Upload Files (DEPRECATED)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/ZML-WIN-Srinivass-01/Downloads/Envista POC.pdf"
+								},
+								{
+									"key": "patient_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "journey_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "workflow_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "stage_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "step_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "action_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "aaa",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/filesaction/upload/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"filesaction",
+								"upload",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Presigned URL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"filename\":\"ENVISTA.pdf\",\r\n    \"fileType\":\"PDF\",\r\n    \"patient_id\":23,\r\n    \"journey_id\": 2,\r\n    \"workflow_id\":1,\r\n    \"stage_id\":7,\r\n    \"step_id\":16,\r\n    \"action_id\":28\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/filesaction/generate-presigned-url/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"filesaction",
+								"generate-presigned-url",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Success",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"filename\":\"ENVISTA.pdf\",\r\n    \"patient_id\":23,\r\n    \"step_id\":16,\r\n    \"action_id\":28\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/filesaction/upload-success",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"filesaction",
+								"upload-success"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download files",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/filesaction/download?patient_id=1&journey_id=1&workflow_id=1&stage_id=1&step_id=1&action_id=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"filesaction",
+								"download"
+							],
+							"query": [
+								{
+									"key": "patient_id",
+									"value": "1"
+								},
+								{
+									"key": "journey_id",
+									"value": "1"
+								},
+								{
+									"key": "workflow_id",
+									"value": "1"
+								},
+								{
+									"key": "stage_id",
+									"value": "1"
+								},
+								{
+									"key": "step_id",
+									"value": "1"
+								},
+								{
+									"key": "action_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lab Portal",
+			"item": [
+				{
+					"name": "Get Service Request Count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/servicerequests/getservicerequestscount/199/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"servicerequests",
+								"getservicerequestscount",
+								"199",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Dashboard Requests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/servicerequests/getservicerequests/199/1?page=1&limit=5&patient_name=Randy%20Orton&search=SR%233",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"servicerequests",
+								"getservicerequests",
+								"199",
+								"1"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "patient_name",
+									"value": "Randy%20Orton"
+								},
+								{
+									"key": "search",
+									"value": "SR%233"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Status of Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Pending\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/servicerequests/updatestatus/199/SR%232",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"servicerequests",
+								"updatestatus",
+								"199",
+								"SR%232"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Service Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/servicerequests/getservicerequest/199/1/SR%235",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"servicerequests",
+								"getservicerequest",
+								"199",
+								"1",
+								"SR%235"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Service Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patient_id\": 1,\r\n    \"treatment_plan_stage_item_id\": 191,\r\n    \"treatment_plan_stage_id\": 78\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/servicerequests/13",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"servicerequests",
+								"13"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJraWQiOiJ5RXM3RDRnTXBKVzZGU2NleVRwV05KSllFNnVQclR5MEUyRDR3MXE4SENBPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxNDU4YTRkOC02MDgxLTcwODYtMDcyNC0zZTFhZmM3NmJjNzciLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9MMnY3ejVEUFAiLCJjbGllbnRfaWQiOiI2bmdkZ2Y3am9tNm01M3I5OG81YmNndTg4bCIsIm9yaWdpbl9qdGkiOiI4ODQwNzhhOC1lYTEwLTQ1MzQtODg3MC1iNGRmN2Y5OTMzZjgiLCJldmVudF9pZCI6IjE0YzI3NWY4LWE4YzUtNDJhOC04NDk4LTg3MjM3NmMwM2UwMiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MjM0NDQzNjYsImV4cCI6MTcyMzUzMDc2NiwiaWF0IjoxNzIzNDQ0MzY2LCJqdGkiOiI3ODhjMTJjZS1iYTcxLTQ3ZTktOGY5MC0yYWUyODMwM2RkZDgiLCJ1c2VybmFtZSI6IjE0NThhNGQ4LTYwODEtNzA4Ni0wNzI0LTNlMWFmYzc2YmM3NyJ9.iK1MYyycCL_guGNtAYx2CNG3O9l7iAQJ2825GK7aqd84sD9tiFaqKRx2ZBv11tWLMOvQE6uRquV_ZvEs94dAV6O8NNirGP5lNHHS_J_GWeMoYeMXQJhzvhplFEB1fkUleyFp5elMocOvG3VdeqQ4nz-tnDQ0lOL9nYWTtRVzUpxSVWXj1gaaTBWVxsFR8ncXNiuuc-AROOAWgN17edZX6vNx2FGhaM1J9xhyoh3_C823JhXtM4xBf6i-RPepTzIU4dDHwpK1-r9AZHOC75VpGhOVfe3iGcx-CCh4ULpUfL_Pmm0w2fbcHgKgwl0lKlGYQs9_mEPRR72X67Ac4mPtYA",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/health",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://wy5v9p2w6g.execute-api.us-east-1.amazonaws.com/dev"
+		},
+		{
+			"key": "access_token",
+			"value": "eyJraWQiOiJ5RXM3RDRnTXBKVzZGU2NleVRwV05KSllFNnVQclR5MEUyRDR3MXE4SENBPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxNDU4YTRkOC02MDgxLTcwODYtMDcyNC0zZTFhZmM3NmJjNzciLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9MMnY3ejVEUFAiLCJjbGllbnRfaWQiOiI2bmdkZ2Y3am9tNm01M3I5OG81YmNndTg4bCIsIm9yaWdpbl9qdGkiOiIwMDk3NjllNC02NjlkLTQyNTEtOTAzNy1jNTdlZjZmNWU0M2YiLCJldmVudF9pZCI6ImY2NDViN2YzLTBjMzktNDQwMi04MTdkLTIxNDVjMTk1YjA1NyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MjM0NTM5OTksImV4cCI6MTcyMzU0MDM5OSwiaWF0IjoxNzIzNDUzOTk5LCJqdGkiOiJmM2ZmNjMxOC0xZTA4LTQ0ZTUtYWJlYy1jMWRkOWIzNjIwYTYiLCJ1c2VybmFtZSI6IjE0NThhNGQ4LTYwODEtNzA4Ni0wNzI0LTNlMWFmYzc2YmM3NyJ9.kJuUsiJf3m_7zrrvLYFTFBoNNMKrHzYwbfzVQEOl89avk2_LJlx8LyIzEL9nHjCWUfSWmtDPyirb4OHZaoEbAkA9-f6XODQ2gi9O5JDyOEIi1wZNikn7r2vAnTt2uthQtFKzP9wuLUeKqSQSWk5pVnngiRBwpHDPJs_57ZPXBAify55rJKlvCsJz17SzVZh49xwqEBH5zcfpqwLmo7hpofCg1M4lwKm9L-nLXLcnnxDZoWzk09GuExZcSVyHD7Uw0wNGe9WpcAQAWLbHzL5voy655-L9IYQbSfJ3-YJyK7_Xa04PsqsW6PzFbRynWfuQZB5ZjmAFplR5vH_WUMln3g",
+			"type": "string"
+		}
+	]
+}

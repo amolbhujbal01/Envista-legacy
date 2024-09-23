@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload to S3</title>
+</head>
+<body>
+    <h1>Upload File to S3</h1>
+    <form id="uploadForm">
+        <label for="fileInput">Select file:</label>
+        <input type="file" id="fileInput" name="file" required>
+        <br>
+        <label for="patientId">Patient ID:</label>
+        <input type="text" id="patientId" name="patient_id" required>
+        <br>
+        <label for="journeyId">Journey ID:</label>
+        <input type="text" id="journeyId" name="journey_id" required>
+        <br>
+        <label for="workflowId">Workflow ID:</label>
+        <input type="text" id="workflowId" name="workflow_id" required>
+        <br>
+        <label for="stageId">Stage ID:</label>
+        <input type="text" id="stageId" name="stage_id" required>
+        <br>
+        <label for="stepId">Step ID:</label>
+        <input type="text" id="stepId" name="step_id" required>
+        <br>
+        <label for="actionId">Action ID:</label>
+        <input type="text" id="actionId" name="action_id" required>
+        <br>
+        <button type="submit">Upload</button>
+    </form>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            const patientId = document.getElementById('patientId').value;
+            const journeyId = document.getElementById('journeyId').value;
+            const workflowId = document.getElementById('workflowId').value;
+            const stageId = document.getElementById('stageId').value;
+            const stepId = document.getElementById('stepId').value;
+            const actionId = document.getElementById('actionId').value;
+
+            try {
+                console.log(file.type)
+                // const response = await fetch('http://localhost:5000/api/filesaction/generate-presigned-url', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //         // Include any necessary authentication headers
+                //     },
+                //     body: JSON.stringify({
+                //         filename: file.name,
+                //         fileType: file.type,
+                //         patient_id: patientId,
+                //         journey_id: journeyId,
+                //         workflow_id: workflowId,
+                //         stage_id: stageId,
+                //         step_id: stepId,
+                //         action_id: actionId
+                //     }),
+                // });
+
+                // const data = await response.json();
+
+                const uploadResponse = await fetch("https://envista-test.s3.amazonaws.com/dental_practice/1/patient/23/journey/2/workflow/1/stage/7/step/16/action/28/1723186886382_Envista%20Data%20Model%20-%20Most%20Recent%20Practice%20Portal.stl?AWSAccessKeyId=AKIA3OLDFQ7KYVYTK4FD&Expires=1723190486&Signature=s8i2wNtrPC4sClCl6E0FFC05A3I%3D", {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': file.type,
+                    },
+                    body: file,
+                });
+
+                // if (uploadResponse.ok) {
+                //     // Notify backend of the successful upload
+                //     const successResponse = await fetch('http://localhost:5000/api/filesaction/upload-success', {
+                //         method: 'POST',
+                //         headers: {
+                //             'Content-Type': 'application/json',
+                //             // Include any necessary authentication headers
+                //         },
+                //         body: JSON.stringify({
+                //             filename: data.fullFilename,
+                //             patient_id: patientId,
+                //             journey_id: journeyId,
+                //             workflow_id: workflowId,
+                //             stage_id: stageId,
+                //             step_id: stepId,
+                //             action_id: actionId
+                //         }),
+                //     });
+
+                //     if (successResponse.ok) {
+                //         alert('File uploaded and notification sent to backend successfully.');
+                //     } else {
+                //         alert('Failed to notify backend of the upload.');
+                //     }
+                // } else {
+                //     alert('File upload failed.');
+                // }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

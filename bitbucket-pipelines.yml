@@ -1,0 +1,48 @@
+image: node:18
+
+pipelines:
+  tags:
+    "envista-ncp-*":
+      - step:
+          name: Build & Deploy Frontend
+          caches:
+            - node
+          script:
+            - cd nobel-cloud
+            - npm install
+            - npm run build
+            - apt-get update
+            - apt-get install -y awscli
+            - aws s3 sync dist s3://envista-frontend --delete
+            - aws cloudfront create-invalidation --distribution-id E1FYO6QX6LPQKS --paths "/*"
+            
+    "envista-lab-*":
+      - step:
+          name: Build & Deploy Lab portal
+          caches:
+            - node
+          script:
+            - cd lab-portal
+            - npm install
+            - npm run build
+            - apt-get update
+            - apt-get install -y awscli
+            - aws s3 sync dist s3://envista-lab-portal --delete
+            - aws cloudfront create-invalidation --distribution-id E3I1WXBWVL6BHG --paths "/*"
+
+    "envista-backend-*":
+      - step:
+          name: Build & Deploy Backend
+          caches:
+            - node
+          deployment: production
+          script:
+            - apt-get update
+            - apt-get install -y zip awscli
+            - cd backend
+            - npm install
+            - zip -r ../backend.zip .
+            - cd ..
+            - aws s3 cp backend.zip s3://envista-deployment/
+            - aws elasticbeanstalk create-application-version --application-name envista-backend --version-label ${BITBUCKET_TAG} --source-bundle S3Bucket=envista-deployment,S3Key=backend.zip
+            - aws elasticbeanstalk update-environment --environment-name Envista-backend-env-2 --version-label ${BITBUCKET_TAG}

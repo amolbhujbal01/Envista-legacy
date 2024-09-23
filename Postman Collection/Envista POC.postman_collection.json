@@ -1,0 +1,1258 @@
+{
+	"info": {
+		"_postman_id": "0f019446-a46a-499c-b3dc-43dc99a0c0b4",
+		"name": "Envista POC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37328595"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sahils@zimetrics.com\",\r\n    \"password\": \"Peterparker@123\",\r\n    \"name\": \"Michael Scott\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sahils@zimetrics.com\",\r\n    \"password\": \"Peterparker@123\",\r\n    \"codeEmailVerify\": \"415415\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ronakk@zimetrics.com\",\r\n    \"password\": \"Peterparker@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Get All Patients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"patient"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "mat",
+									"disabled": true
+								},
+								{
+									"key": "incorrectParameter",
+									"value": "wrong value",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Patient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Michael de Santa\",\r\n  \"email\": \"john.doe@example.com\",\r\n  \"phone\": \"+1234567890\",\r\n  \"gender\": \"Male\",\r\n  \"address\": \"123 Elm Street, Springfield, IL, 62701\",\r\n  \"date_of_birth\": \"2000-01-25\",\r\n  \"pms_id\":56,\r\n  \"ssn\":\"256-56-58236\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/patient/createPatient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"patient",
+								"createPatient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Patient by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/patient/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"patient",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Workflow",
+			"item": [
+				{
+					"name": "Get All workflows",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/workflows",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"workflows"
+							],
+							"query": [
+								{
+									"key": "conditionsTreated",
+									"value": "misaligned teeth",
+									"disabled": true
+								},
+								{
+									"key": "incorrectParameter",
+									"value": "wrong param",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Workflow by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/workflows/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"workflows",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TreatmentJourney",
+			"item": [
+				{
+					"name": "Get Treatment Journeys for Patient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/treatmentjourneys/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Patient Treatment Journey Plan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/treatmentjourneys/getpatientjourneyplan/7/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"getpatientjourneyplan",
+								"7",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Treatment Journey",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Harry's Journey v3\",\r\n    \"priority\": \"High\",\r\n    \"start_date\": \"2024-07-29\",\r\n    \"end_date\": \"2024-08-30\",\r\n    \"clinical_notes\": \"Initial Assessment and treatment planning\",\r\n    \"workflow_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/treatmentjourneys/createTreatmentJourney/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"createTreatmentJourney",
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create TreatmentJourney",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"journey5\",\r\n    \"priority\": \"High\",\r\n    \"start_date\": \"2024-07-29\",\r\n    \"end_date\": \"2024-07-31\",\r\n    \"clinical_notes\": \"Initial Assessment and treatment planning\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/treatmentjourneys/1/createTreatmentJourney",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"treatmentjourneys",
+										"1",
+										"createTreatmentJourney"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "98"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 31 Jul 2024 15:49:32 GMT"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1722441833"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "309"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"135-42QcjSLxOSl9b/ivbpxGSa4OeBk\""
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"treatment_journey_id\": 9,\n        \"tenant_id\": \"e49824e8-5081-70ee-1f8a-0448058d59ce\",\n        \"workflow_id\": null,\n        \"patient_id\": 1,\n        \"dental_practice_id\": 1,\n        \"status\": \"Done\",\n        \"start_date\": \"2024-07-28T18:30:00.000Z\",\n        \"end_date\": \"2024-07-30T18:30:00.000Z\",\n        \"priority\": \"High\",\n        \"clinical_notes\": \"Initial Assessment and treatment planning\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Update Workflow Id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"workflow_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/treatmentjourneys/updateWorkflowId/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"updateWorkflowId",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update TreatmentJourney",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"workflow_id\": \"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/treatmentjourneys/updateWorkflowId/9",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"treatmentjourneys",
+										"updateWorkflowId",
+										"9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 31 Jul 2024 15:49:48 GMT"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1722441833"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "306"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"132-CgT7/w6CyjhGsUHGYhLrrrNKQHs\""
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"treatment_journey_id\": 9,\n        \"tenant_id\": \"e49824e8-5081-70ee-1f8a-0448058d59ce\",\n        \"workflow_id\": 1,\n        \"patient_id\": 1,\n        \"dental_practice_id\": 1,\n        \"status\": \"Done\",\n        \"start_date\": \"2024-07-28T18:30:00.000Z\",\n        \"end_date\": \"2024-07-30T18:30:00.000Z\",\n        \"priority\": \"High\",\n        \"clinical_notes\": \"Initial Assessment and treatment planning\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Skip stage",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/treatmentjourneys/skip-stage/1/1/1/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"skip-stage",
+								"1",
+								"1",
+								"1",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Step Actions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/treatmentjourneys/step/1?step_id=9&journey_id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"step",
+								"1"
+							],
+							"query": [
+								{
+									"key": "step_id",
+									"value": "9"
+								},
+								{
+									"key": "journey_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Status of Steps and Stages",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/treatmentjourneys/step/complete/405",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"step",
+								"complete",
+								"405"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update status of Actions [Approve/Review/E-Shop/Confirm]",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/treatmentjourneys/step/action/complete/332",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"step",
+								"action",
+								"complete",
+								"332"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start Treatment Journey",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/treatmentjourneys/start-journey/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"start-journey",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Complete Journey",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/treatmentjourneys/complete-journey/1/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"treatmentjourneys",
+								"complete-journey",
+								"1",
+								"13"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "File Actions",
+			"item": [
+				{
+					"name": "Upload Files (DEPRECATED)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/ZML-WIN-Srinivass-01/Downloads/Envista POC.pdf"
+								},
+								{
+									"key": "patient_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "journey_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "workflow_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "stage_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "step_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "action_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "aaa",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/filesaction/upload/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"filesaction",
+								"upload",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Presigned URL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"filename\":\"Envista Data Model - Most Recent Practice Portal.stl\",\r\n    \"fileType\":\"stl\",\r\n    \"patient_id\":23,\r\n    \"journey_id\": 2,\r\n    \"workflow_id\":1,\r\n    \"stage_id\":7,\r\n    \"step_id\":16,\r\n    \"action_id\":28\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/filesaction/generate-presigned-url/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"filesaction",
+								"generate-presigned-url",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Success",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"filename\":\"dental_practice/1/patient/23/journey/2/workflow/1/stage/7/step/31/action/28/1723167143546_Envista POC.png\",\r\n    \"patient_id\":23,\r\n    \"step_id\":31,\r\n    \"action_id\":28\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/filesaction/upload-success",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"filesaction",
+								"upload-success"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download files",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/filesaction/download?step_id=295&action_id=676&patient_id=23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"filesaction",
+								"download"
+							],
+							"query": [
+								{
+									"key": "step_id",
+									"value": "295"
+								},
+								{
+									"key": "action_id",
+									"value": "676"
+								},
+								{
+									"key": "patient_id",
+									"value": "23"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Image Repository",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/filesaction/image-repository/24",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"filesaction",
+								"image-repository",
+								"24"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Image from Image repository",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"image_repository_id\": 38,\r\n  \"patient_id\": 23,\r\n  \"treatment_plan_stage_item_id\": 16\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/filesaction/image-repository/30",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"filesaction",
+								"image-repository",
+								"30"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lab Portal",
+			"item": [
+				{
+					"name": "Get Service Request Count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/servicerequests/getservicerequestscount/199/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"servicerequests",
+								"getservicerequestscount",
+								"199",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Status of Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Design Phase\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/servicerequests/updatestatus/199/d290f1ee-6c54-4b01-90e6-d701748f0851",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"servicerequests",
+								"updatestatus",
+								"199",
+								"d290f1ee-6c54-4b01-90e6-d701748f0851"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Dashboard Requests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/servicerequests/getservicerequests/199/1?page=1&limit=2&created_start_date=2024-08-07",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"servicerequests",
+								"getservicerequests",
+								"199",
+								"1"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "created_start_date",
+									"value": "2024-08-07"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Service Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/servicerequests/getservicerequest/199/1/SR%235",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"servicerequests",
+								"getservicerequest",
+								"199",
+								"1",
+								"SR%235"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Service Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJraWQiOiJ5RXM3RDRnTXBKVzZGU2NleVRwV05KSllFNnVQclR5MEUyRDR3MXE4SENBPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxNDU4YTRkOC02MDgxLTcwODYtMDcyNC0zZTFhZmM3NmJjNzciLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9MMnY3ejVEUFAiLCJjbGllbnRfaWQiOiI2bmdkZ2Y3am9tNm01M3I5OG81YmNndTg4bCIsIm9yaWdpbl9qdGkiOiJhZjE5MWM2NS1mZDFhLTRmYTgtYTRjNC00NTM3ZTFhZWU1OWEiLCJldmVudF9pZCI6IjYxZDYzNmYzLTkwZTItNGM4Yi04Nzg3LTI2MDk0ZWQ4YjZhNSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MjM0NDkwMTcsImV4cCI6MTcyMzUzNTQxNywiaWF0IjoxNzIzNDQ5MDE3LCJqdGkiOiJkOTNjZTllYS1iY2FhLTQzYTctYmFiMi1jZGNiMmEyOWM3N2IiLCJ1c2VybmFtZSI6IjE0NThhNGQ4LTYwODEtNzA4Ni0wNzI0LTNlMWFmYzc2YmM3NyJ9.eZDj3BHSR2OSdrWgrFBADYkiIkrarYktCkLv7VWRR_QTFtFYKdffrvRqzbj-4ZZclUCEjIrwUxspa3YDjpp9ac2OBApmgpSywd5HJHeEap80SvKenS29icECot-kIHwP8-1JZUST1PEFCKROLc9iH1vz5Jm18wDMCXO6x8ScR8KCFQDoBr41Fsfz2J0bG2Zzg6-j4VRHLlIH6MlUd4752pxcrmXaKg9bRQwxCF81t3cOZQPgOokNYrQgLAm6WirzuMhJNqz4GXnI2_4xrwT8sVYleysSFu2wXuSJMaiiNCukrrkxo3ezBgZ9-VjBS7O8oC3CpGz33yAfZv4Wiy3WCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patient_id\": 1,\r\n    \"treatment_plan_stage_item_id\": 191,\r\n    \"treatment_plan_stage_id\": 78\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/servicerequests/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"servicerequests",
+								"13"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJraWQiOiJ5RXM3RDRnTXBKVzZGU2NleVRwV05KSllFNnVQclR5MEUyRDR3MXE4SENBPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxNDU4YTRkOC02MDgxLTcwODYtMDcyNC0zZTFhZmM3NmJjNzciLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9MMnY3ejVEUFAiLCJjbGllbnRfaWQiOiI2bmdkZ2Y3am9tNm01M3I5OG81YmNndTg4bCIsIm9yaWdpbl9qdGkiOiI4NDk5MDNmNS1mODRiLTQyMTktODhlOC1jMGFjYmVkOThmMzQiLCJldmVudF9pZCI6IjU0ZWE0NTY5LTFmZmMtNGZlNi05NzFkLWU3ZDkzNDY4ZDI2NiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MjM0NTMyMDUsImV4cCI6MTcyMzUzOTYwNSwiaWF0IjoxNzIzNDUzMjA1LCJqdGkiOiIzOTkyOTZlNS01NjhmLTQ3OTctOGJiMi00Y2QwZTA4MDM4OGEiLCJ1c2VybmFtZSI6IjE0NThhNGQ4LTYwODEtNzA4Ni0wNzI0LTNlMWFmYzc2YmM3NyJ9.e32jD9L7rm0RIqwi7Tys6oXSV4JPqU1zjnm-leJBnN5MyL3mBxKH4RXQsCboc62eIYAYo62gzgoLL-2jZKtsOzxM9E2WhPxnLV3iTGD0JAIUxRAg27VlsoRyHA4y2Tl559aZSqvNX4-J_dKDt2nOACwqYT7b4xxT1OdSKjAG1PLPFof_KthX7x1vUibz3YQNX35Qw9uE8NpPVaYz7ybM14-PgRcOzTYFi2z_v-DI8-2MQ_jjXVPSxQKRlujc2u0-v6cv8_BRgW6evjisJpIri4jlcFuZscHUx4DhmkPMJwU7bH__3FpK3QDqbVwLy9D6Gp9bwEXItJkDvDfIgfwBQw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJraWQiOiJ5RXM3RDRnTXBKVzZGU2NleVRwV05KSllFNnVQclR5MEUyRDR3MXE4SENBPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxNDc4ZTQ0OC1lMDQxLTcwN2QtNDFjMy0yNzMzM2FlNjEyNDIiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9MMnY3ejVEUFAiLCJjbGllbnRfaWQiOiI2bmdkZ2Y3am9tNm01M3I5OG81YmNndTg4bCIsIm9yaWdpbl9qdGkiOiI0NGUyODdjNi1hMTFkLTQzZWItYTdmMC02NTdmMGMzNzQxMzIiLCJldmVudF9pZCI6IjllZjY4YTYzLTM1NWQtNDlhMy04MzYzLTIxYjZkNWQwZTk3YiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MjM3ODY5MTgsImV4cCI6MTcyMzg3MzMxNywiaWF0IjoxNzIzNzg2OTE4LCJqdGkiOiJlZGU1YjZhZi02MDM0LTQ0MTItOWI0MC1iZTllMWRkMWJiNmEiLCJ1c2VybmFtZSI6IjE0NzhlNDQ4LWUwNDEtNzA3ZC00MWMzLTI3MzMzYWU2MTI0MiJ9.ka376ucJbNADrSHiFDUtc5WdS-bzFZj92KZw3Qk6qvHXGAHosWQnoPWR-MiUSdiKFcAEkLz3moBQRRB09w_qgpeISsrUw4i4tfhxjzsCOK-1uZQ_xYfSLdQNY-2BMiHjqU5ua7KK8mTIkKhuOrnUAtk7QqKd5xKY-_MaBrDZJrXdAIZ0LwUVc4jJMWJP-ByOIz4RAJ1IHd8U_H5-UniSsgNHTcTJUTyPk0_PPKlrWMoy5IfdzN-aRn4WaxFHY-wmxg2wp6vKf57PuzGC4eMs0eAXyM_ZIfK_02nttDLqoLMm7d6swzcy9t1He7uX66CEualIhFHGVJIbTCzSiKDfaA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
